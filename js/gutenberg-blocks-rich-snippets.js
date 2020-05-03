@@ -11,7 +11,7 @@ function LogConsola() {
         "itemReviewed": {
           "@type": "Restaurant",
           "image": "http://www.example.com/seafood-restaurant.jpg",
-          "name": "Legal Seafood",
+          "name": "Nombre Restaurante",
           "servesCuisine": "Seafood",
           "priceRange": "$$$",
           "telephone": "1234567",
