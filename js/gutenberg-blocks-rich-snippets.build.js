@@ -118,16 +118,29 @@ function LogConsola() {
         )
     );
 }
+function RichSnippetReviewEdit(props) {}
+function RichSnippetReviewSave(props) {
+
+    schema = {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": "Viajes en grupo a ARGENTINA",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.5",
+            "ratingCount": "43",
+            "bestRating": "5",
+            "worstRating": "1"
+        }
+    };
+}
 
 registerBlockType('ivanbarreda/rich-snippet-review', {
     title: __('Rich Snippet Review'),
     icon: 'lock',
-    category: 'common',
+    category: 'rich-snippets',
 
     edit: function edit() {
-        function imprimir() {
-            console.log('prueba');
-        }
 
         return wp.element.createElement(
             "div",
@@ -146,10 +159,6 @@ registerBlockType('ivanbarreda/rich-snippet-review', {
         );
     },
     save: function save() {
-
-        function imprimir() {
-            console.log('prueba');
-        }
 
         return wp.element.createElement(
             "div",

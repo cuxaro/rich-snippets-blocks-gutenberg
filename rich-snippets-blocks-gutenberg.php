@@ -40,3 +40,27 @@ function ib_gutenberg_rich_blocks_function()
 
 
 add_action('init', 'ib_gutenberg_rich_blocks_function');
+
+
+//Create Custom Blocks Category Rich Snippets
+
+function ib_rich_snippet_category( $categories, $post ) {
+
+
+	/*
+    if ( $post->post_type !== 'post' ) {
+        return $categories;
+	}
+	*/
+    return array_merge(
+        $categories,
+        array(
+            array(
+                'slug' => 'rich-snippets',
+                'title' => __( 'Rich Snippets', 'gutenberg-rich-snippets' ),
+                'icon'  => 'wordpress',
+            ),
+        )
+    );
+}
+add_filter( 'block_categories', 'ib_rich_snippet_category', 10, 2 );
