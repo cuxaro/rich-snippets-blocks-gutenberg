@@ -67,58 +67,15 @@
 /* 0 */
 /***/ (function(module, exports) {
 
-var __ = wp.i18n.__;
-var registerBlockType = wp.blocks.registerBlockType;
+var __ = wp.i18n.__; //Dependency is mandatory if want Internalialize the code
 
+var registerBlockType = wp.blocks.registerBlockType; //Dependency is mandatory for build the Block
 
-function LogConsola() {
+//Code showed in the backend 
 
-    scriptjson = {
-        "@context": "https://schema.org/",
-        "@type": "Review",
-        "itemReviewed": {
-            "@type": "Restaurant",
-            "image": "http://www.example.com/seafood-restaurant.jpg",
-            "name": "Nombre Restaurante",
-            "servesCuisine": "Seafood",
-            "priceRange": "$$$",
-            "telephone": "1234567",
-            "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "123 William St",
-                "addressLocality": "New York",
-                "addressRegion": "NY",
-                "postalCode": "10038",
-                "addressCountry": "US"
-            }
-        },
-        "reviewRating": {
-            "@type": "Rating",
-            "ratingValue": "4"
-        },
-        "name": "A good seafood place.",
-        "author": {
-            "@type": "Person",
-            "name": "Bob Smith"
-        },
-        "reviewBody": "The seafood is great.",
-        "publisher": {
-            "@type": "Organization",
-            "name": "Washington Times"
-        }
-    };
-
-    return wp.element.createElement(
-        "div",
-        null,
-        wp.element.createElement(
-            "script",
-            { type: "application/ld+json" },
-            JSON.stringify(scriptjson, null, 2)
-        )
-    );
-}
 function RichSnippetReviewEdit(props) {}
+
+//Code showed in the front 
 function RichSnippetReviewSave(props) {
 
     schema = {
@@ -219,12 +176,8 @@ registerBlockType('ivanbarreda/rich-snippet-review', {
         return wp.element.createElement(
             "div",
             null,
-            wp.element.createElement(LogConsola, null),
-            wp.element.createElement(
-                "button",
-                { onClick: imprimir },
-                "Boton que muestra cosas"
-            )
+            "Code",
+            wp.element.createElement(RichSnippetReviewSave, null)
         );
     }
 });

@@ -1,60 +1,12 @@
-const { __ } = wp.i18n;
-const { registerBlockType } = wp.blocks;
+const { __ } = wp.i18n; //Dependency is mandatory if want Internalialize the code
+const { registerBlockType } = wp.blocks; //Dependency is mandatory for build the Block
 
-
-function LogConsola() {
-
-    scriptjson =
-    {
-        "@context": "https://schema.org/",
-        "@type": "Review",
-        "itemReviewed": {
-            "@type": "Restaurant",
-            "image": "http://www.example.com/seafood-restaurant.jpg",
-            "name": "Nombre Restaurante",
-            "servesCuisine": "Seafood",
-            "priceRange": "$$$",
-            "telephone": "1234567",
-            "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "123 William St",
-                "addressLocality": "New York",
-                "addressRegion": "NY",
-                "postalCode": "10038",
-                "addressCountry": "US"
-            }
-        },
-        "reviewRating": {
-            "@type": "Rating",
-            "ratingValue": "4"
-        },
-        "name": "A good seafood place.",
-        "author": {
-            "@type": "Person",
-            "name": "Bob Smith"
-        },
-        "reviewBody": "The seafood is great.",
-        "publisher": {
-            "@type": "Organization",
-            "name": "Washington Times"
-        }
-    }
-
-
-    return (
-        <div>
-            <script type="application/ld+json" >
-                {JSON.stringify(scriptjson, null, 2)}
-            </script>
-
-        </div>
-
-
-    );
-}
+//Code showed in the backend 
 function RichSnippetReviewEdit(props) {
 
 }
+
+//Code showed in the front 
 function RichSnippetReviewSave(props) {
 
     schema = {
@@ -130,8 +82,10 @@ registerBlockType('ivanbarreda/rich-snippet-review', {
 
         return (
             <div>
-                <LogConsola />
-                <button onClick={imprimir}>Boton que muestra cosas</button>
+
+                Code
+                <RichSnippetReviewSave />
+                
 
             </div>
         );

@@ -24,18 +24,26 @@ if (!defined('WPINC')) {
 define('PLUGIN_NAME_VERSION', '1.0.0');
 
 
+//Register the Gutenberg Blocks
 function ib_gutenberg_rich_blocks_function()
 {
 
+    //Register the js to handle the block
+    // we need the follow dependencies:
+    // 'wp-blocks', 'wp-i18n', 'wp-element'
     wp_register_script(
         'rich-snippets',
         plugins_url('js/gutenberg-blocks-rich-snippets.build.js', __FILE__),
         array('wp-blocks', 'wp-i18n', 'wp-element'),
     );
 
+    //Register ivanbarreda/rich-snippet-review block
+    // the functionalaty is handle in JS file
     register_block_type('ivanbarreda/rich-snippet-review', array(
         'editor_script' => 'rich-snippets',
     ));
+
+
 }
 add_action('init', 'ib_gutenberg_rich_blocks_function');
 
