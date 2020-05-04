@@ -115,7 +115,7 @@ registerBlockType('ivanbarreda/rich-snippet-review', {
                 </div>
 
                 <div className="input-group">
-                    <label for="rich-snippet-rating-count">Total number rich-snippets</label>
+                    <label for="rich-snippet-rating-count">Total number Votes</label>
                     <input className="prueba" value={attributes.rich_snippet_rating_count} onChange={updateCount} type="number" placeholder="46" id="rich-snippet-rating-count"></input>
                 </div>
 

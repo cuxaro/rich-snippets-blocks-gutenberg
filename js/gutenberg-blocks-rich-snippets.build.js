@@ -202,7 +202,7 @@ registerBlockType('ivanbarreda/rich-snippet-review', {
                 wp.element.createElement(
                     "label",
                     { "for": "rich-snippet-rating-count" },
-                    "Total number rich-snippets"
+                    "Total number Votes"
                 ),
                 wp.element.createElement("input", { className: "prueba", value: attributes.rich_snippet_rating_count, onChange: updateCount, type: "number", placeholder: "46", id: "rich-snippet-rating-count" })
             ),
