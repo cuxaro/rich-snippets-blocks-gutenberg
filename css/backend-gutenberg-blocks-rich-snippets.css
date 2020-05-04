@@ -1,0 +1,45 @@
+.backend{
+
+
+}
+
+
+
+.backend.rich-snippet-params{
+
+    border: 1px dotted red;
+    padding: 0.6rem;
+    display: flex;
+    flex-direction: column;
+   
+
+    
+}
+
+.backend.rich-snippet-params .title{
+
+    text-align: center;
+    font-size: 2rem;
+
+    
+}
+
+.backend .input-group{
+
+    display: flex;
+    flex-direction: column;
+}
+
+.backend .explain{
+
+    background-color: red;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.backend .explain p{
+
+    font-size: 1rem;
+    color: white;
+    padding: 1rem;
+
+}

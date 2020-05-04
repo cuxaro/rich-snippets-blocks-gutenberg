@@ -1,5 +1,5 @@
 {
-  "name": "gutenberg-block-static-jsx-example",
+  "name": "rich-snippets-blocs-gutenberg",
   "version": "1.0.0",
   "license": "GPL-2.0-or-later",
   "main": "block.js",

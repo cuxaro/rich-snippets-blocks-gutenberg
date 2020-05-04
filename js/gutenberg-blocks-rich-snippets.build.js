@@ -133,28 +133,84 @@ function RichSnippetReviewSave(props) {
             "worstRating": "1"
         }
     };
+    return schema;
 }
 
 registerBlockType('ivanbarreda/rich-snippet-review', {
     title: __('Rich Snippet Review'),
     icon: 'lock',
     category: 'rich-snippets',
+    explain: __('This rich snippet only appear in the code of FrontEnd. It doen\'t display for humans, only for machines like Google Bot'),
 
-    edit: function edit() {
+    edit: function edit(props) {
 
         return wp.element.createElement(
             "div",
-            null,
+            { className: "backend rich-snippet-params" },
             wp.element.createElement(
-                "p",
-                null,
-                "v 005"
+                "div",
+                { className: "title" },
+                "Review Aggregate Rating"
             ),
-            wp.element.createElement("input", { onChange: imprimir }),
             wp.element.createElement(
-                "button",
-                { onClick: imprimir },
-                "Boton que muestra cosas"
+                "div",
+                { className: "input-group" },
+                wp.element.createElement(
+                    "label",
+                    { "for": "rich-snippet-name" },
+                    "Rich Snippet Name"
+                ),
+                wp.element.createElement("input", { className: "prueba", placeholder: "Spanish Paella ...", id: "rich-snippet-name" })
+            ),
+            wp.element.createElement(
+                "div",
+                { className: "input-group" },
+                wp.element.createElement(
+                    "label",
+                    { "for": "rich-snippet-rating-value" },
+                    "Rating Value"
+                ),
+                wp.element.createElement("input", { className: "prueba", type: "number", placeholder: "87..", id: "rich-snippet-rating-value" })
+            ),
+            wp.element.createElement(
+                "div",
+                { className: "input-group" },
+                wp.element.createElement(
+                    "label",
+                    { "for": "rich-snippet-rating-count" },
+                    "Total number rich-snippets"
+                ),
+                wp.element.createElement("input", { className: "prueba", type: "number", placeholder: "46", id: "rich-snippet-rating-count" })
+            ),
+            wp.element.createElement(
+                "div",
+                { className: "input-group" },
+                wp.element.createElement(
+                    "label",
+                    { "for": "rich-snippet-rating-best" },
+                    "Range Best Rating (max number)"
+                ),
+                wp.element.createElement("input", { className: "prueba", type: "number", placeholder: "100", id: "rich-snippet-rating-best" })
+            ),
+            wp.element.createElement(
+                "div",
+                { className: "input-group" },
+                wp.element.createElement(
+                    "label",
+                    { "for": "rich-snippet-rating-worst" },
+                    "Range Worst Rating (min number)"
+                ),
+                wp.element.createElement("input", { className: "prueba", type: "number", placeholder: "0", id: "rich-snippet-rating-worst" })
+            ),
+            wp.element.createElement("div", { className: "preview-rich-snippet" }),
+            wp.element.createElement(
+                "aside",
+                { className: "explain" },
+                wp.element.createElement(
+                    "p",
+                    null,
+                    "This rich snippet only appear in the code of FrontEnd. It is not display for humans, only for machines like Google Bot"
+                )
             )
         );
     },

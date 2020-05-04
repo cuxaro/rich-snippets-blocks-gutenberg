@@ -41,8 +41,6 @@ function LogConsola() {
     }
 
 
-
-
     return (
         <div>
             <script type="application/ld+json" >
@@ -71,6 +69,7 @@ function RichSnippetReviewSave(props) {
             "worstRating": "1"
         }
     }
+    return schema;
 
 
 }
@@ -79,17 +78,52 @@ registerBlockType('ivanbarreda/rich-snippet-review', {
     title: __('Rich Snippet Review'),
     icon: 'lock',
     category: 'rich-snippets',
+    explain: __('This rich snippet only appear in the code of FrontEnd. It doen\'t display for humans, only for machines like Google Bot'),
 
-    edit() {
+    edit(props) {
 
         return (
-            <div>
+            <div className="backend rich-snippet-params">
 
-                <p>v 005</p>
-                <input onChange={imprimir}></input>
-                <button onClick={imprimir}>Boton que muestra cosas</button>
+                <div className="title">Review Aggregate Rating</div>
+                
+
+                <div className="input-group">
+                    <label for="rich-snippet-name">Rich Snippet Name</label>
+                    <input className="prueba" placeholder="Spanish Paella ..." id="rich-snippet-name"></input>
+                </div>
+
+                <div className="input-group">
+                    <label for="rich-snippet-rating-value">Rating Value</label>
+                    <input className="prueba" type="number" placeholder="87.." id="rich-snippet-rating-value"></input>
+                </div>
+
+                <div className="input-group">
+                    <label for="rich-snippet-rating-count">Total number rich-snippets</label>
+                    <input className="prueba" type="number" placeholder="46" id="rich-snippet-rating-count"></input>
+                </div>
+
+                <div className="input-group">
+                    <label for="rich-snippet-rating-best">Range Best Rating (max number)</label>
+                    <input className="prueba" type="number" placeholder="100" id="rich-snippet-rating-best"></input>
+                </div>
+                <div className="input-group">
+                    <label for="rich-snippet-rating-worst">Range Worst Rating (min number)</label>
+                    <input className="prueba" type="number" placeholder="0" id="rich-snippet-rating-worst"></input>
+                </div>
+
+                <div className="preview-rich-snippet">
+
+                </div>
+
+                <aside className="explain">
+                    <p>This rich snippet only appear in the code of FrontEnd. It is not display for humans, only for machines like Google Bot</p>
+
+                </aside>
+
+
+
             </div>
-
         );
     },
     save() {
