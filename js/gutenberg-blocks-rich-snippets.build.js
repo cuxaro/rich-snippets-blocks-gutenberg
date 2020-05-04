@@ -76,30 +76,89 @@ var registerBlockType = wp.blocks.registerBlockType; //Dependency is mandatory f
 function RichSnippetReviewEdit(props) {}
 
 //Code showed in the front 
-function RichSnippetReviewSave(props) {
+function RichSnippetReviewSave(values) {
 
     schema = {
         "@context": "https://schema.org/",
         "@type": "Product",
-        "name": "Viajes en grupo a ARGENTINA",
+        "name": values.attributes.rich_snippet_name,
         "aggregateRating": {
             "@type": "AggregateRating",
-            "ratingValue": "4.5",
-            "ratingCount": "43",
-            "bestRating": "5",
-            "worstRating": "1"
+            "ratingValue": values.attributes.rich_snippet_rating_value,
+            "ratingCount": values.attributes.rich_snippet_rating_count,
+            "bestRating": values.attributes.rich_snippet_rating_best,
+            "worstRating": values.attributes.rich_snippet_rating_worst
         }
     };
-    return schema;
+    return wp.element.createElement(
+        "div",
+        null,
+        wp.element.createElement(
+            "script",
+            { type: "application/ld+json" },
+            JSON.stringify(schema, null, 2)
+        )
+    );
 }
 
 registerBlockType('ivanbarreda/rich-snippet-review', {
     title: __('Rich Snippet Review'),
     icon: 'lock',
     category: 'rich-snippets',
-    explain: __('This rich snippet only appear in the code of FrontEnd. It doen\'t display for humans, only for machines like Google Bot'),
+    attributes: {
 
-    edit: function edit(props) {
+        explain_text: {
+
+            type: 'string'
+        },
+        rich_snippet_name: {
+
+            type: 'string'
+        },
+        rich_snippet_rating_value: {
+
+            type: 'string'
+        },
+        rich_snippet_rating_count: {
+
+            type: 'string'
+        },
+        rich_snippet_rating_best: {
+
+            type: 'string'
+        },
+        rich_snippet_rating_worst: {
+
+            type: 'string'
+        }
+
+    },
+
+    edit: function edit(_ref) {
+        var attributes = _ref.attributes,
+            setAttributes = _ref.setAttributes;
+
+
+        function updateName(event) {
+            setAttributes({ rich_snippet_name: event.target.value });
+            console.log(event);
+        }
+        function updateValue(event) {
+            setAttributes({ rich_snippet_rating_value: event.target.value });
+            console.log(event);
+        }
+        function updateCount(event) {
+            setAttributes({ rich_snippet_rating_count: event.target.value });
+            console.log(event);
+        }
+        function updateBest(event) {
+            setAttributes({ rich_snippet_rating_best: event.target.value });
+            console.log(event);
+        }
+        function updateWorst(event) {
+            setAttributes({ rich_snippet_rating_worst: event.target.value });
+            console.log(event);
+        }
 
         return wp.element.createElement(
             "div",
@@ -117,7 +176,7 @@ registerBlockType('ivanbarreda/rich-snippet-review', {
                     { "for": "rich-snippet-name" },
                     "Rich Snippet Name"
                 ),
-                wp.element.createElement("input", { className: "prueba", placeholder: "Spanish Paella ...", id: "rich-snippet-name" })
+                wp.element.createElement("input", { className: "prueba", value: attributes.rich_snippet_name, onChange: updateName, placeholder: "Spanish Paella ...", id: "rich-snippet-name" })
             ),
             wp.element.createElement(
                 "div",
@@ -127,7 +186,7 @@ registerBlockType('ivanbarreda/rich-snippet-review', {
                     { "for": "rich-snippet-rating-value" },
                     "Rating Value"
                 ),
-                wp.element.createElement("input", { className: "prueba", type: "number", placeholder: "87..", id: "rich-snippet-rating-value" })
+                wp.element.createElement("input", { className: "prueba", value: attributes.rich_snippet_rating_value, onChange: updateValue, type: "number", placeholder: "87..", id: "rich-snippet-rating-value" })
             ),
             wp.element.createElement(
                 "div",
@@ -137,7 +196,7 @@ registerBlockType('ivanbarreda/rich-snippet-review', {
                     { "for": "rich-snippet-rating-count" },
                     "Total number rich-snippets"
                 ),
-                wp.element.createElement("input", { className: "prueba", type: "number", placeholder: "46", id: "rich-snippet-rating-count" })
+                wp.element.createElement("input", { className: "prueba", value: attributes.rich_snippet_rating_count, onChange: updateCount, type: "number", placeholder: "46", id: "rich-snippet-rating-count" })
             ),
             wp.element.createElement(
                 "div",
@@ -147,7 +206,7 @@ registerBlockType('ivanbarreda/rich-snippet-review', {
                     { "for": "rich-snippet-rating-best" },
                     "Range Best Rating (max number)"
                 ),
-                wp.element.createElement("input", { className: "prueba", type: "number", placeholder: "100", id: "rich-snippet-rating-best" })
+                wp.element.createElement("input", { className: "prueba", value: attributes.rich_snippet_rating_best, onChange: updateBest, type: "number", placeholder: "100", id: "rich-snippet-rating-best" })
             ),
             wp.element.createElement(
                 "div",
@@ -157,7 +216,7 @@ registerBlockType('ivanbarreda/rich-snippet-review', {
                     { "for": "rich-snippet-rating-worst" },
                     "Range Worst Rating (min number)"
                 ),
-                wp.element.createElement("input", { className: "prueba", type: "number", placeholder: "0", id: "rich-snippet-rating-worst" })
+                wp.element.createElement("input", { className: "prueba", value: attributes.rich_snippet_rating_worst, onChange: updateWorst, type: "number", placeholder: "0", id: "rich-snippet-rating-worst" })
             ),
             wp.element.createElement("div", { className: "preview-rich-snippet" }),
             wp.element.createElement(
@@ -171,13 +230,15 @@ registerBlockType('ivanbarreda/rich-snippet-review', {
             )
         );
     },
-    save: function save() {
+    save: function save(_ref2) {
+        var attributes = _ref2.attributes;
+
 
         return wp.element.createElement(
             "div",
             null,
-            "Code",
-            wp.element.createElement(RichSnippetReviewSave, null)
+            "Nombre",
+            wp.element.createElement(RichSnippetReviewSave, { attributes: attributes })
         );
     }
 });

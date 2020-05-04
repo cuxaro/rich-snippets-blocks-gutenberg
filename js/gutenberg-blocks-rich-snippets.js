@@ -7,22 +7,28 @@ function RichSnippetReviewEdit(props) {
 }
 
 //Code showed in the front 
-function RichSnippetReviewSave(props) {
+function RichSnippetReviewSave(values) {
 
     schema = {
         "@context": "https://schema.org/",
         "@type": "Product",
-        "name": "Viajes en grupo a ARGENTINA",
+        "name": values.attributes.rich_snippet_name,
         "aggregateRating": {
             "@type": "AggregateRating",
-            "ratingValue": "4.5",
-            "ratingCount": "43",
-            "bestRating": "5",
-            "worstRating": "1"
+            "ratingValue": values.attributes.rich_snippet_rating_value,
+            "ratingCount": values.attributes.rich_snippet_rating_count,
+            "bestRating": values.attributes.rich_snippet_rating_best,
+            "worstRating": values.attributes.rich_snippet_rating_worst
         }
     }
-    return schema;
+    return (
+        <div>
+            <script type="application/ld+json" >
+                {JSON.stringify(schema, null, 2)}
+            </script>
 
+        </div>
+    );
 
 }
 
@@ -30,38 +36,86 @@ registerBlockType('ivanbarreda/rich-snippet-review', {
     title: __('Rich Snippet Review'),
     icon: 'lock',
     category: 'rich-snippets',
-    explain: __('This rich snippet only appear in the code of FrontEnd. It doen\'t display for humans, only for machines like Google Bot'),
+    attributes: {
 
-    edit(props) {
+        explain_text: {
+
+            type: 'string'
+        },
+        rich_snippet_name: {
+
+            type: 'string'
+        },
+        rich_snippet_rating_value: {
+
+            type: 'string'
+        },
+        rich_snippet_rating_count: {
+
+            type: 'string'
+        },
+        rich_snippet_rating_best: {
+
+            type: 'string'
+        },
+        rich_snippet_rating_worst: {
+
+            type: 'string'
+        },
+
+    },
+
+    edit({ attributes, setAttributes }) {
+
+        function updateName(event) {
+            setAttributes({ rich_snippet_name: event.target.value });
+            console.log(event);
+        }
+        function updateValue(event) {
+            setAttributes({ rich_snippet_rating_value: event.target.value });
+            console.log(event);
+        }
+        function updateCount(event) {
+            setAttributes({ rich_snippet_rating_count: event.target.value });
+            console.log(event);
+        }
+        function updateBest(event) {
+            setAttributes({ rich_snippet_rating_best: event.target.value });
+            console.log(event);
+        }
+        function updateWorst(event) {
+            setAttributes({ rich_snippet_rating_worst: event.target.value });
+            console.log(event);
+        }
 
         return (
             <div className="backend rich-snippet-params">
 
                 <div className="title">Review Aggregate Rating</div>
-                
+
 
                 <div className="input-group">
                     <label for="rich-snippet-name">Rich Snippet Name</label>
-                    <input className="prueba" placeholder="Spanish Paella ..." id="rich-snippet-name"></input>
+                    <input className="prueba" value={attributes.rich_snippet_name} onChange={updateName} placeholder="Spanish Paella ..." id="rich-snippet-name"></input>
                 </div>
 
                 <div className="input-group">
                     <label for="rich-snippet-rating-value">Rating Value</label>
-                    <input className="prueba" type="number" placeholder="87.." id="rich-snippet-rating-value"></input>
+                    <input className="prueba" value={attributes.rich_snippet_rating_value} onChange={updateValue} type="number" placeholder="87.." id="rich-snippet-rating-value"></input>
                 </div>
 
                 <div className="input-group">
                     <label for="rich-snippet-rating-count">Total number rich-snippets</label>
-                    <input className="prueba" type="number" placeholder="46" id="rich-snippet-rating-count"></input>
+                    <input className="prueba" value={attributes.rich_snippet_rating_count} onChange={updateCount} type="number" placeholder="46" id="rich-snippet-rating-count"></input>
                 </div>
 
                 <div className="input-group">
                     <label for="rich-snippet-rating-best">Range Best Rating (max number)</label>
-                    <input className="prueba" type="number" placeholder="100" id="rich-snippet-rating-best"></input>
+                    <input className="prueba" value={attributes.rich_snippet_rating_best} onChange={updateBest} type="number" placeholder="100" id="rich-snippet-rating-best"></input>
                 </div>
                 <div className="input-group">
                     <label for="rich-snippet-rating-worst">Range Worst Rating (min number)</label>
-                    <input className="prueba" type="number" placeholder="0" id="rich-snippet-rating-worst"></input>
+                    <input className="prueba" value={attributes.rich_snippet_rating_worst} onChange={updateWorst} type="number" placeholder="0" id="rich-snippet-rating-worst"></input>
                 </div>
 
                 <div className="preview-rich-snippet">
@@ -78,14 +132,15 @@ registerBlockType('ivanbarreda/rich-snippet-review', {
             </div>
         );
     },
-    save() {
+    save({ attributes }) {
 
         return (
             <div>
 
-                Code
-                <RichSnippetReviewSave />
-                
+                Nombre
+
+                <RichSnippetReviewSave attributes={attributes} />
+
 
             </div>
         );
