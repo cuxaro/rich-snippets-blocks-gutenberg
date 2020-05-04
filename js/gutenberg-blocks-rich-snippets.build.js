@@ -71,6 +71,8 @@ var __ = wp.i18n.__; //Dependency is mandatory if want Internalialize the code
 
 var registerBlockType = wp.blocks.registerBlockType; //Dependency is mandatory for build the Block
 
+var withSelect = wp.data.withSelect;
+
 //Code showed in the backend 
 
 function RichSnippetReviewEdit(props) {}
@@ -99,6 +101,12 @@ function RichSnippetReviewSave(values) {
             JSON.stringify(schema, null, 2)
         )
     );
+}
+
+function RichSnippetReviewPreview(values) {
+
+    preview = "<div></";
+    return;
 }
 
 registerBlockType('ivanbarreda/rich-snippet-review', {
@@ -218,14 +226,50 @@ registerBlockType('ivanbarreda/rich-snippet-review', {
                 ),
                 wp.element.createElement("input", { className: "prueba", value: attributes.rich_snippet_rating_worst, onChange: updateWorst, type: "number", placeholder: "0", id: "rich-snippet-rating-worst" })
             ),
-            wp.element.createElement("div", { className: "preview-rich-snippet" }),
+            wp.element.createElement(
+                "div",
+                { className: "preview-rich-snippet" },
+                wp.element.createElement(
+                    "div",
+                    { className: "title" },
+                    "TITLE PLACE HOLDER"
+                ),
+                wp.element.createElement(
+                    "div",
+                    { className: "review" },
+                    wp.element.createElement(
+                        "div",
+                        { className: "stars" },
+                        "\u272D\u272D\u272D\u272D"
+                    ),
+                    wp.element.createElement(
+                        "div",
+                        { className: "review-text" },
+                        "Valoraci\xF3n: "
+                    ),
+                    wp.element.createElement(
+                        "div",
+                        { className: "review-points" },
+                        " ",
+                        attributes.rich_snippet_rating_value,
+                        " - ",
+                        attributes.rich_snippet_rating_count,
+                        " votos"
+                    )
+                ),
+                wp.element.createElement(
+                    "div",
+                    { className: "description" },
+                    "This is only a placeholder of description. "
+                )
+            ),
             wp.element.createElement(
                 "aside",
                 { className: "explain" },
                 wp.element.createElement(
                     "p",
                     null,
-                    "This rich snippet only appear in the code of FrontEnd. It is not display for humans, only for machines like Google Bot"
+                    "This rich snippet only appear in the code of FrontEnd. It is not displayed for humans, only for machines like Google Bot"
                 )
             )
         );
@@ -237,7 +281,6 @@ registerBlockType('ivanbarreda/rich-snippet-review', {
         return wp.element.createElement(
             "div",
             null,
-            "Nombre",
             wp.element.createElement(RichSnippetReviewSave, { attributes: attributes })
         );
     }

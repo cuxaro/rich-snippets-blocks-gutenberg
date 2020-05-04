@@ -1,5 +1,7 @@
 const { __ } = wp.i18n; //Dependency is mandatory if want Internalialize the code
 const { registerBlockType } = wp.blocks; //Dependency is mandatory for build the Block
+const { withSelect } = wp.data;
+
 
 //Code showed in the backend 
 function RichSnippetReviewEdit(props) {
@@ -29,6 +31,14 @@ function RichSnippetReviewSave(values) {
 
         </div>
     );
+
+}
+
+function RichSnippetReviewPreview(values) {
+
+    preview = "<div></";
+    return
+
 
 }
 
@@ -119,11 +129,20 @@ registerBlockType('ivanbarreda/rich-snippet-review', {
                 </div>
 
                 <div className="preview-rich-snippet">
+                    <div className="title">TITLE PLACE HOLDER</div>
+                    <div className="review">
+                        <div className="stars">&#10029;&#10029;&#10029;&#10029;</div>
+                        <div className="review-text">Valoración: </div>
+                        <div className="review-points"> {attributes.rich_snippet_rating_value} - {attributes.rich_snippet_rating_count} votos</div>
+                    </div>
+                    <div className="description">This is only a placeholder of description. </div>
 
                 </div>
 
+
+
                 <aside className="explain">
-                    <p>This rich snippet only appear in the code of FrontEnd. It is not display for humans, only for machines like Google Bot</p>
+                    <p>This rich snippet only appear in the code of FrontEnd. It is not displayed for humans, only for machines like Google Bot</p>
 
                 </aside>
 
@@ -137,9 +156,11 @@ registerBlockType('ivanbarreda/rich-snippet-review', {
         return (
             <div>
 
-                Nombre
+
 
                 <RichSnippetReviewSave attributes={attributes} />
+
+
 
 
             </div>

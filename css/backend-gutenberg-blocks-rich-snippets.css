@@ -40,6 +40,61 @@
 
     font-size: 1rem;
     color: white;
-    padding: 1rem;
+    padding: 0.4rem;
 
 }
+
+/* Preview Rich Snippet */
+
+.backend .preview-rich-snippet{
+
+    display: flex;
+    flex-direction: column;
+    font-family: arial, sans-serif;
+    font-weight: normal;
+    background-color: white;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.backend .preview-rich-snippet .title{
+
+    
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 26px;
+    color: #1a0dab;
+    text-align: left;
+}
+
+.backend .preview-rich-snippet .review{
+
+    display: flex;
+    flex-direction: row;
+
+
+}
+
+.backend .preview-rich-snippet .review div{
+    margin-right: 0.6rem;
+
+}
+
+.backend .preview-rich-snippet .review .stars{
+
+    color: #E7721E;
+}
+
+
+.backend .preview-rich-snippet .description, .backend .preview-rich-snippet .review{
+
+
+    
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    color: #5f6368;
+    text-align: left;
+}
+
+

@@ -34,7 +34,7 @@ function ib_gutenberg_rich_blocks_function()
     wp_register_script(
         'rich-snippets',
         plugins_url('js/gutenberg-blocks-rich-snippets.build.js', __FILE__),
-        array('wp-blocks', 'wp-i18n', 'wp-element'),
+        array('wp-blocks', 'wp-i18n', 'wp-element', 'wp-data'),
     );
 
     //Register ivanbarreda/rich-snippet-review block
